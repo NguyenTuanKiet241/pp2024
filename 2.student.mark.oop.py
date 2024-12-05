@@ -78,10 +78,10 @@ while (True):
     choose = int(input("Your choose: "))
 
     if choose == 1:
-        numberOfStudents = InputOfStudentInClass()
+        InputOfStudentInClass()
 
     if choose == 2:
-        numberOfCourses = InputOfCoursesInClass()
+        InputOfCoursesInClass()
 
     if choose == 3:
         MarkForStudent()
