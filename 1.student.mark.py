@@ -8,7 +8,7 @@ def InputOfStudentInClass():
 
 def InputOfCoursesInClass():
     numberOfCourses = int(input("Enter number of Courses: "))
-    for i in range(1, numberOfCourses + 1):
+    for i in range(1, numberOfCourses + 1): 
         id = input(f"Enter id of course {i}: ")
         name = input(f"Enter name of course {i}: ")
         listOfCourses.append([id, name])
