@@ -50,16 +50,23 @@ def MarkForStudent():
     listOfCourses[nameOfCourse].addMark(listScore)
     
 def ListCourses():
+    if len(listOfCourses) <= 0:
+        print("don't have any courses")
     for course in listOfCourses:
         print(listOfCourses[course])
 
 def ListStudents():
+    if len(listOfStudents) <= 0:
+        print("don't have any students")
     for student in listOfStudents:
         print(student)
 
 def MarkStudents():
     nameOfCourse = (input("Enter name of Courses to mark: "))
-    listOfCourses[nameOfCourse].printMark()
+    try:
+        listOfCourses[nameOfCourse].printMark()
+    except:
+        print("don't have that course")
 
 listOfStudents = []
 listOfCourses = {}

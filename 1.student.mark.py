@@ -22,17 +22,26 @@ def MarkForStudent():
     dictOfMarks[nameOfCourse] = listScore
     
 def ListCourses():
+    if len(listOfCourses) <= 0:
+        print("don't have any courses")
+
     for course in listOfCourses:
         print(f"Course: {course[0]} - {course[1]}")
 
 def ListStudents():
+    if len(listOfStudents) <= 0:
+        print("don't have any students")
+
     for student in listOfStudents:
         print(f"Student {student[0]}: {student[1]} - {student[2]}")
 
 def MarkStudents():
     nameOfCourse = (input("Enter name of Courses to mark: "))
-    print(dictOfMarks[nameOfCourse])
-
+    try:
+        print(dictOfMarks[nameOfCourse])
+    except:
+        print("don't have that course")
+        
 listOfStudents = []
 listOfCourses = []
 dictOfMarks = {}
