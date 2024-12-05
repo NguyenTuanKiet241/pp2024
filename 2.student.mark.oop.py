@@ -1,17 +1,45 @@
+class Object:
+    def __init__(self, id, name):
+        self._id = id
+        self._name = name
+
+class Student(Object):
+    def __init__(self, id, name, dob):
+        super().__init__(id, name)
+        self.__dob = dob
+
+    def __str__(self) -> str:
+        return f"Student {self._id}: {self._name} - {self.__dob}"
+
+class Course(Object):
+    def __init__(self, id, name):
+        super().__init__(id, name)
+
+    def addMark(self, scoreList):
+        self.__scoreList = scoreList
+
+    def printMark(self):
+        print(self.__scoreList)
+
+    def __str__(self) -> str:
+        return f"Course {self._id}: {self._name}"
+
 def InputOfStudentInClass():
     numberOfStudents = int(input("Enter number of Students: "))
     for i in range(1, numberOfStudents + 1):
         id = input(f"Enter id of student {i}: ")
         name = input(f"Enter name of student {i}: ")
         dob = input(f"Enter DoB of student {i}: ")
-        listOfStudents.append([id, name, dob])
+        newStudent = Student(id, name, dob)
+        listOfStudents.append(newStudent)
 
 def InputOfCoursesInClass():
     numberOfCourses = int(input("Enter number of Courses: "))
     for i in range(1, numberOfCourses + 1):
         id = input(f"Enter id of course {i}: ")
         name = input(f"Enter name of course {i}: ")
-        listOfCourses.append([id, name])
+        newCourse = Course(id, name)
+        listOfCourses[name] = newCourse
 
 def MarkForStudent():
     nameOfCourse = (input("Enter name of Courses: "))
@@ -19,23 +47,22 @@ def MarkForStudent():
     for i in range(1, len(listOfStudents) + 1):
         score = int(input(f"Enter score of student {i}: "))
         listScore.append(score)
-    dictOfMarks[nameOfCourse] = listScore
+    listOfCourses[nameOfCourse].addMark(listScore)
     
 def ListCourses():
     for course in listOfCourses:
-        print(f"Course: {course[0]} - {course[1]}")
+        print(listOfCourses[course])
 
 def ListStudents():
     for student in listOfStudents:
-        print(f"Student {student[0]}: {student[1]} - {student[2]}")
+        print(student)
 
 def MarkStudents():
     nameOfCourse = (input("Enter name of Courses to mark: "))
-    print(dictOfMarks[nameOfCourse])
+    listOfCourses[nameOfCourse].printMark()
 
 listOfStudents = []
-listOfCourses = []
-dictOfMarks = {}
+listOfCourses = {}
 
 while (True):
     print("------------")
