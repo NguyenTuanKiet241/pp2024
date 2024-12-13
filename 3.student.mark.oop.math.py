@@ -1,5 +1,7 @@
 import math
-import numpy
+import numpy as np
+import curses
+from curses import wrapper
 
 class Object:
     def __init__(self, id, name):
@@ -10,6 +12,7 @@ class Student(Object):
     def __init__(self, id, name, dob):
         super().__init__(id, name)
         self.__dob = dob
+        self.__gpa = 0
 
     def getId(self):
         return self._id
@@ -22,9 +25,15 @@ class Student(Object):
 
     def getScore(self):
         return self.__score
+    
+    def setGPA(self, gpa):
+        self.__gpa = gpa
+
+    def getGPA(self):
+        return self.__gpa
 
     def __str__(self) -> str:
-        return f"Student {self._id}: {self._name} - {self.__dob}"
+        return f"Student {self._id}: {self._name} - {self.__dob} - {self.__gpa}"
 
 class Course(Object):
     def __init__(self, id, name):
@@ -102,17 +111,32 @@ def CalculateGPA():
         count += 1
 
     gpa = total/count
-    global listOfGPA
-    listOfGPA[idStudent] = gpa
-    listOfGPA = dict(sorted(listOfGPA.items(), key=lambda item: item[1], reverse=True))
-    print(listOfGPA)
+    student.setGPA(gpa)
+    bubble_sort(listOfStudents)
+    ListStudents()
 
-def GPA():
-    print(listOfGPA);
+def bubble_sort(arr):
+    for n in range(len(arr) - 1, 0, -1):
+        swapped = False  
+
+        for i in range(n):
+            if arr[i].getGPA() < arr[i + 1].getGPA():
+                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+                swapped = True
+        
+        if not swapped:
+            break
 
 listOfStudents = []
-listOfGPA = {}
 listOfCourses = {}
+listOfGpa = np.array([])
+
+def main(stdscr):
+    stdscr.clear()
+    stdscr.refresh()
+    stdscr.getch()
+
+wrapper(main)
 
 while (True):
     print("------------")
@@ -124,7 +148,6 @@ while (True):
     print("5.Print all students info")
     print("6.Check all marks for selected coures")
     print("7.Calculate GPA and Sort it descending")
-    print("8.Print all GPA")
     print("8.Exit")
     print("---")
     choose = int(input("Your choose: "))
@@ -151,9 +174,7 @@ while (True):
         CalculateGPA()
 
     if choose == 8:
-        GPA()
-
-    if choose == 9:
         break
 
     print()
+
