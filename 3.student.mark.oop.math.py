@@ -111,6 +111,8 @@ def CalculateGPA():
         count += 1
 
     gpa = total/count
+    gpaArr = np.array(gpa)
+    listOfGpa = listOfGpa.concatenate((listOfGpa, gpaArr))
     student.setGPA(gpa)
     bubble_sort(listOfStudents)
     ListStudents()
@@ -129,7 +131,7 @@ def bubble_sort(arr):
 
 listOfStudents = []
 listOfCourses = {}
-listOfGpa = np.array([])
+listOfGpa = np.array(0)
 
 def main(stdscr):
     stdscr.clear()
