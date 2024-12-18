@@ -1,6 +1,6 @@
 from domains import *
 from math import floor
-from numpy import array as np
+from numpy import array
 
 listOfStudents = []
 listOfGPA = {}

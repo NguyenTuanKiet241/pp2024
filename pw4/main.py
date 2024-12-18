@@ -8,7 +8,7 @@ def MarkForStudent():
     for i in range(1, len(listOfStudents) + 1):
         score = float(input(f"Enter score of student {i}: "))
         listOfStudents[i-1].addScore(i-1)
-        listScore.append(math.floor(score * 10) / 10)
+        listScore.append(floor(score * 10) / 10)
     listOfCourses[nameOfCourse].addMark(listScore)
     
 def ListCourses():
@@ -63,12 +63,7 @@ def bubble_sort(arr):
 
 listOfStudents = []
 listOfCourses = {}
-listOfGpa = np.array([])
-
-def main(stdscr):
-    stdscr.clear()
-    stdscr.refresh()
-    stdscr.getch()
+listOfGpa = array([])
 
 wrapper(main)
 
