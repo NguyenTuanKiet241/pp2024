@@ -1,5 +1,6 @@
+from domains import * 
 from input import *
-import output
+from output import *
 
 def MarkForStudent():
     nameOfCourse = (input("Enter name of Courses: "))
@@ -44,13 +45,32 @@ def CalculateGPA():
         count += 1
 
     gpa = total/count
-    global listOfGPA
-    listOfGPA[idStudent] = gpa
-    listOfGPA = dict(sorted(listOfGPA.items(), key=lambda item: item[1], reverse=True))
-    print(listOfGPA)
+    student.setGPA(gpa)
+    bubble_sort(listOfStudents)
+    ListStudents()
 
-def GPA():
-    print(listOfGPA)
+def bubble_sort(arr):
+    for n in range(len(arr) - 1, 0, -1):
+        swapped = False  
+
+        for i in range(n):
+            if arr[i].getGPA() < arr[i + 1].getGPA():
+                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+                swapped = True
+        
+        if not swapped:
+            break
+
+listOfStudents = []
+listOfCourses = {}
+listOfGpa = np.array([])
+
+def main(stdscr):
+    stdscr.clear()
+    stdscr.refresh()
+    stdscr.getch()
+
+wrapper(main)
 
 while (True):
     print("------------")
@@ -62,8 +82,7 @@ while (True):
     print("5.Print all students info")
     print("6.Check all marks for selected coures")
     print("7.Calculate GPA and Sort it descending")
-    print("8.Print all GPA")
-    print("9.Exit")
+    print("8.Exit")
     print("---")
     choose = int(input("Your choose: "))
 
@@ -89,9 +108,7 @@ while (True):
         CalculateGPA()
 
     if choose == 8:
-        GPA()
-
-    if choose == 9:
         break
 
     print()
+
