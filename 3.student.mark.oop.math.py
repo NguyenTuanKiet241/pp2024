@@ -134,7 +134,6 @@ listOfGpa = np.array([])
 def main(stdscr):
     stdscr.clear()
     stdscr.refresh()
-    stdscr.getch()
 
 wrapper(main)
 
